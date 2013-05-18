@@ -83,8 +83,10 @@ def prepare_query(querytext):
 def cql_quote(term):
     if isinstance(term, unicode):
         return "'%s'" % __escape_quotes(term.encode('utf8'))
-    elif isinstance(term, (str, bool)):
+    elif isinstance(term, str):
         return "'%s'" % __escape_quotes(str(term))
+    elif isinstance(term, bool):
+        return "%s" % str(term).lower()
     else:
         return str(term)
 
